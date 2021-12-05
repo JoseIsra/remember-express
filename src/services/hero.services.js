@@ -1,5 +1,6 @@
 const boom = require("@hapi/boom");
 const { heroSchema, getHeroSchema } = require("../schemas/hero.schema");
+const getConnection = require("../libs/postgres");
 
 const temps = [
   {
@@ -35,7 +36,11 @@ const temps = [
 ];
 
 module.exports = {
-  getAll: (req, res) => {
+  getAll: async (req, res) => {
+    const test = await getConnection();
+    test.query("SELECT * FROM HEROES", (err, res) => {
+      console.log("DESDE POTGRES", res.rows);
+    });
     res.status(200).json(temps);
   },
   getOne: (req, res) => {
