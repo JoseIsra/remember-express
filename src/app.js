@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
-const app = express();
 const routerApi = require("./routes/index");
+const app = express();
+require("dotenv").config();
 const {
   errorHandler,
   logErrors,

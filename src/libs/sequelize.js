@@ -1,13 +1,13 @@
-const { Sequelize } = require("sequelize");
-const { config } = require("../config/config");
+// const { Sequelize } = require("sequelize");
+// const { config } = require("../configdb/config");
 
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
+// const USER = encodeURIComponent(config.dbUser);
+// const PASSWORD = encodeURIComponent(config.dbPassword);
 
-const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+// const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
-const sequelize = new Sequelize(URI, {
-  dialect: "postgres",
-});
+// const sequelize = new Sequelize(URI, {
+//   dialect: "postgres",
+// });
 
-module.exports = sequelize;
+// module.exports = sequelize;
