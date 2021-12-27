@@ -1,12 +1,14 @@
 //modelol
-const Category = require("../models").Category;
+const { Category, workers } = require("../models");
 
 const boom = require("@hapi/boom");
 
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const fields = await Category.findAll();
+      const fields = await Category.findAll({
+        include: workers,
+      });
       if (!fields.length) {
         res.json({
           message: "Aún no hay campos para mostrar 👻",
