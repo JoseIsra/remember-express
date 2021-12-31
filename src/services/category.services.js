@@ -1,5 +1,5 @@
 //modelol
-const { Category, workers } = require("../models");
+const { Category } = require("../models");
 
 const boom = require("@hapi/boom");
 
@@ -7,7 +7,7 @@ module.exports = {
   getAll: async (req, res) => {
     try {
       const fields = await Category.findAll({
-        include: workers,
+        include: "product",
       });
       if (!fields.length) {
         res.json({
@@ -15,7 +15,6 @@ module.exports = {
         });
         return;
       }
-      console.log(fields);
       res.json(fields);
     } catch (error) {
       console.log(error);
@@ -25,7 +24,6 @@ module.exports = {
     const { id } = req.params;
     try {
       const row = await Category.findByPk(id);
-      console.log(row);
       res.json({
         message: "Campo encontrado 👻",
         data: row,
@@ -36,7 +34,6 @@ module.exports = {
   },
   create: async (req, res) => {
     await Category.create(req.body);
-    console.log("Creación exitosa");
     res.status(201).json({
       status: res.status,
       message: "CREACIÓN EXITOSA",

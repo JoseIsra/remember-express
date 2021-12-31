@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "momo": "cd src && npx sequelize-cli model:generate --name ",
+    "gomigrate": "cd src && npx sequelize-cli db:migrate",
+    "destro": "cd src && npx sequelize-cli db:migrate:undo:all",
+    "skeleton": "cd src && npx sequelize-cli migration:generate --name "
   },
   "dependencies": {
     "@hapi/boom": "^9.1.4",
