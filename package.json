@@ -9,6 +9,7 @@
     "momo": "cd src && npx sequelize-cli model:generate --name ",
     "gomigrate": "cd src && npx sequelize-cli db:migrate",
     "destro": "cd src && npx sequelize-cli db:migrate:undo:all",
+    "destro:one": "cd src && npx sequelize-cli db:migrate:undo",
     "skeleton": "cd src && npx sequelize-cli migration:generate --name "
   },
   "dependencies": {
