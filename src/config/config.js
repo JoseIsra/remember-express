@@ -22,5 +22,10 @@ module.exports = {
     define: {
       timestamps: false,
     },
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
   },
 };
