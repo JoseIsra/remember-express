@@ -35,4 +35,19 @@ module.exports = {
       console.log(error);
     }
   },
+  destro: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await User.destroy({
+        where: {
+          id,
+        },
+      });
+      res.json({
+        message: "Eliminación exitosa 🚀",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

@@ -6,5 +6,6 @@ router.get("/:id", userController.getOne);
 
 router.get("/", userController.getAll);
 router.post("/new", userController.create);
+router.delete("/:id", userController.destro);
 
 module.exports = router;

@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 const routerApi = require("./routes/index");
+const { checkApiKey } = require("./middlewares/authHandler");
+
 const app = express();
 require("dotenv").config();
 const {
@@ -18,9 +20,15 @@ routerApi(app);
 app.use([logErrors, boomHandler, errorHandler]);
 
 // routes 🤖
-app.use("/home", (req, res) => {
+// app.use("/", (req, res) => {
+//   res.json({
+//     message: " HOME DE LA PÁGINA CLARO QUE SÍ",
+//     emojiOfTheDay: "😃",
+//   });
+// });
+app.use("/home", checkApiKey, (req, res) => {
   res.json({
-    message: " HOME DE LA PÁGINA CLARO QUE SÍ",
+    message: "PÁGINA DE INICIO slash home",
     emojiOfTheDay: "😃",
   });
 });
