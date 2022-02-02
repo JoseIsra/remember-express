@@ -50,4 +50,10 @@ module.exports = {
       console.log(error);
     }
   },
+  login: (req, res) => {
+    res.json({
+      message: "welcome my friend",
+      user: req.user,
+    });
+  },
 };

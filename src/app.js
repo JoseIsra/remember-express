@@ -3,6 +3,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 const routerApi = require("./routes/index");
 const { checkApiKey } = require("./middlewares/authHandler");
+require("./utils/auth/index");
 
 const app = express();
 require("dotenv").config();

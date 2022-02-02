@@ -13,3 +13,18 @@ Responde a Representational State Transfer
 - [x] Principal diferencia, PUT -> se envían todos los campos para hacer la actualización.
       PATCH -> solo se envían los datos que quiero modificar
 - [x] DELETE -> se puede usar en masa(peligroso obviamente equis de) o de manera específica claro que sí
+
+# JWT
+
+```sh
+Estándar que define una compacata forma de transmitir información segura
+entre dos partes en un objeto JSON.
+```
+
+- Son stateless, no se guarda en ningun lado. Es escalable. El token permite realizar la autorización.
+
+Beneficios:
+
+- Es stateless, permite realizar sistemas distribuidos
+- Es escalable
+- Permite soportas diferentes clientes
