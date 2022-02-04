@@ -28,3 +28,9 @@ Beneficios:
 - Es stateless, permite realizar sistemas distribuidos
 - Es escalable
 - Permite soportas diferentes clientes
+
+### tiene 3 partes
+
+1. Header -> tipo de encriptación y algoritmo
+2. Payload -> información contenidad en el token, la fecha de creación está ahí also
+3. una forma para verificar el token

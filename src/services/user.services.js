@@ -1,4 +1,6 @@
 const { User } = require("../models");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 module.exports = {
   getOne: async (req, res) => {
@@ -51,9 +53,15 @@ module.exports = {
     }
   },
   login: (req, res) => {
+    const user = req.user;
+    const payload = {
+      sub: user.id,
+      role: "role",
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     res.json({
-      message: "welcome my friend",
-      user: req.user,
+      user,
+      token,
     });
   },
 };
