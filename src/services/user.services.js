@@ -29,7 +29,15 @@ module.exports = {
   },
   getAll: async (req, res) => {
     try {
-      const result = await User.findAll();
+      const result = await User.findAll({
+        include: "roles",
+      });
+      if (!result.length) {
+        res.json({
+          message: "No hay registros",
+        });
+        return;
+      }
       res.json({
         result,
       });

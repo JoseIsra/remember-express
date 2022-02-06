@@ -6,9 +6,10 @@ const boom = require("@hapi/boom");
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const fields = await Category.findAll({
-        include: "product",
-      });
+      // const fields = await Category.findAll({
+      //   include: "product",
+      // });
+      const fields = await Category.findAll();
       if (!fields.length) {
         res.json({
           message: "Aún no hay campos para mostrar 👻",
