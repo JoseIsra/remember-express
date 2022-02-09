@@ -34,11 +34,30 @@ module.exports = {
     }
   },
   create: async (req, res) => {
-    await Category.create(req.body);
-    res.status(201).json({
-      status: res.status,
-      message: "CREACIÓN EXITOSA",
-      newCategory: req.body,
-    });
+    try {
+      await Category.create(req.body);
+      res.status(201).json({
+        status: res.status,
+        message: "CREACIÓN EXITOSA",
+        newCategory: req.body,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  destro: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await Category.destroy({
+        where: {
+          id,
+        },
+      });
+      res.json({
+        message: "Eliminación exitosa 🚀",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
 };

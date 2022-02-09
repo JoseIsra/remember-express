@@ -64,7 +64,7 @@ module.exports = {
     const user = req.user;
     const payload = {
       sub: user.id,
-      role: "role",
+      role: user.role_id,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET);
     res.json({
