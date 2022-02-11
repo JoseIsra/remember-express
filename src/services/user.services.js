@@ -1,6 +1,5 @@
 const { User } = require("../models");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const authController = require("./auth.service");
 
 module.exports = {
   getOne: async (req, res) => {
@@ -45,7 +44,7 @@ module.exports = {
       console.log(error);
     }
   },
-  destro: async (req, res) => {
+  destro: async (req, res, next) => {
     const { id } = req.params;
     try {
       await User.destroy({
@@ -57,19 +56,23 @@ module.exports = {
         message: "Eliminación exitosa 🚀",
       });
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   },
   login: (req, res) => {
-    const user = req.user;
-    const payload = {
-      sub: user.id,
-      role: user.role_id,
-    };
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const { user, token } = authController.signToken(req.user);
     res.json({
       user,
       token,
     });
+  },
+  recover: async (req, res, next) => {
+    try {
+      const { email } = req.body;
+      const resp = await authController.sendEmail(email);
+      res.json(resp);
+    } catch (error) {
+      next(error);
+    }
   },
 };

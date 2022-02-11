@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const router = require("express").Router({ strict: true });
 
 //  ALL AVAILABLE ROUTES IN THE APP
 const categoryRouter = require("./categories");

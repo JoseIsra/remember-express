@@ -16,6 +16,7 @@ const {
 // server config 😀
 app.use(express.json());
 app.use(cors());
+app.set("strict routing", true);
 
 routerApi(app);
 app.use([logErrors, boomHandler, errorHandler]);

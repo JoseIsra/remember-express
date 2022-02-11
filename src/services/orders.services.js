@@ -1,4 +1,5 @@
 const { Order, Order_Product } = require("../models");
+const order = require("../models/order");
 
 module.exports = {
   getOne: async (req, res) => {
@@ -50,6 +51,33 @@ module.exports = {
       });
     } catch (error) {
       console.log(error);
+    }
+  },
+  findOrderByUser: async (req, res) => {
+    const userId = req.user.sub;
+    try {
+      const orders = await Order.findAll({
+        where: {
+          user_id: userId,
+        },
+        include: [
+          {
+            association: "items",
+            include: ["category"],
+          },
+        ],
+      });
+      if (!orders.length) {
+        return res.json({
+          message: "Aún no tienes órdenes de compra",
+        });
+      }
+      res.json({
+        message: "Órdenes 👻",
+        orders,
+      });
+    } catch (error) {
+      console.error(error);
     }
   },
 };

@@ -13,5 +13,6 @@ router.post(
   passport.authenticate("local", { session: false }),
   userController.login
 );
+router.post("/recovery", userController.recover);
 
 module.exports = router;

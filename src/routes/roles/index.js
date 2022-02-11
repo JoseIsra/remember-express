@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const roleController = require("../../services/roles.services");
-const { checkRoles } = require("../../middlewares/authHandler");
+const { checkRoles, checkAdminRole } = require("../../middlewares/authHandler");
 const passport = require("passport");
 
 // ROUTES SECTION
@@ -8,10 +8,14 @@ router.get("/:id", roleController.getOne);
 
 router.get(
   "/",
-  [passport.authenticate("jwt", { session: false }), checkRoles([3])],
+  [passport.authenticate("jwt", { session: false }), checkRoles([1, 2])],
   roleController.getAll
 );
-router.post("/new", roleController.create);
+router.post(
+  "/new",
+  [passport.authenticate("jwt", { session: false }), checkAdminRole],
+  roleController.create
+);
 router.delete("/:id", roleController.destro);
 
 module.exports = router;
