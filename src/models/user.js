@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       password_hash: DataTypes.STRING,
       password: DataTypes.VIRTUAL,
       role_id: DataTypes.INTEGER,
+      recovery_token: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -6,12 +6,12 @@ const localStategy = new Strategy(
     usernameField: "name",
     passwordField: "password",
   },
-  (name, password, done) => {
+  async (name, password, done) => {
     try {
-      const user = authController.getUser(name, password);
+      const user = await authController.getUser(name, password);
       done(null, user);
     } catch (error) {
-      done(erro, false);
+      done(error, false);
     }
   }
 );

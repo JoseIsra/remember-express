@@ -1,7 +1,28 @@
 const { User } = require("../models");
 const authController = require("./auth.service");
+const boom = require("@hapi/boom");
 
 module.exports = {
+  updateUser: async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!user) throw boom.notFound();
+
+    try {
+      await User.update(req.body, {
+        where: {
+          email: user.email,
+        },
+      });
+      res.json({ message: "Usuario actualizado" });
+    } catch (error) {
+      throw next(error);
+    }
+  },
   getOne: async (req, res) => {
     const { id } = req.params;
     try {
@@ -69,10 +90,14 @@ module.exports = {
   recover: async (req, res, next) => {
     try {
       const { email } = req.body;
-      const resp = await authController.sendEmail(email);
+      const resp = await authController.sendRecovery(email);
       res.json(resp);
     } catch (error) {
       next(error);
     }
+  },
+  updatingPassword: async (req, res, next) => {
+    const { token, newPassword } = req.body;
+    await authController.changePassword(token, newPassword);
   },
 };

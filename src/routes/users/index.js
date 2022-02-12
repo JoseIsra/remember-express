@@ -14,5 +14,7 @@ router.post(
   userController.login
 );
 router.post("/recovery", userController.recover);
+router.post("/update", userController.updateUser);
+router.post("/passw-new", userController.updatingPassword);
 
 module.exports = router;
